@@ -8,8 +8,11 @@
 #include <string>
 #include <unordered_map>
 #include <regex>
+#include <thread>
+#include <chrono>
 
 using namespace std;
+using namespace chrono_literals;
 
 #define ID_TRAY_APP_ICON                1001
 #define ID_TRAY_EXIT_CONTEXT_MENU_ITEM  3000
@@ -194,6 +197,8 @@ void SendKey(int targetKey, bool keyDown)
 
     DWORD flags = KEYEVENTF_SCANCODE;
     input.ki.dwFlags = keyDown ? flags : flags | KEYEVENTF_KEYUP;
+    int randNum = rand()%(7-1 + 1) + 1;
+    std::this_thread::sleep_for(std::chrono::milliseconds(randNum))
     SendInput(1, &input, sizeof(INPUT));
 }
 
