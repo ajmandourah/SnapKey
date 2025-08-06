@@ -33,6 +33,7 @@ Download
 - Does not interact with game files 🎮
 - Activate/Deactivate via context menu ⛔
 - Double-click the tray icon to disable it 👆👆
+- Built‑in and custom keyboard layout profiles 🗂️
 - Sticky Keys Feature: tracks the state of a pressed key ⌨️
 - Enhances the precision of counter-strafing movements in games 🎯
 - Allows key rebinding using ASCII codes specified in the configuration file 🛠️
