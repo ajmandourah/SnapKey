@@ -1,5 +1,5 @@
 #define MyAppName "SnapKey"
-#define MyAppVersion "0.0.0"
+#define MyAppVersion "1.2.9"
 #define MyAppPublisher "cafali"
 #define MyAppURL "https://github.com/cafali/SnapKey"
 #define MyAppExeName "SnapKey.exe"
@@ -28,8 +28,8 @@ OutputBaseFilename={#MyAppName}-{#MyAppVersion}-Setup
 SetupIconFile=Z:\dev\DEV SnapKey\snapkey.ico
 SolidCompression=yes
 WizardStyle=classic
-WizardImageFile=C:\Users\cafali\Desktop\wizard_large.bmp
-WizardSmallImageFile=C:\Users\cafali\Desktop\wizard_small.bmp
+WizardImageFile=Z:\dev\DEV SnapKey\wizard_large.bmp
+WizardSmallImageFile=Z:\dev\DEV SnapKey\wizard_small.bmp
 VersionInfoVersion={#MyAppVersion}
 
 
