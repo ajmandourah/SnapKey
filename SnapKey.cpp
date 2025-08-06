@@ -350,7 +350,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 std::string GetVersionInfo() {
     return "SnapKey v1.2.9 (R18)\n"
-           "Version Date: August 18, 2025\n"
+           "Version Date: August 8, 2025\n"
            "Repository: github.com/cafali/SnapKey\n"
            "License: MIT License\n";
 }
