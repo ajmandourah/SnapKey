@@ -32,6 +32,8 @@ Download
 - Compatible with all keyboards ✅
 - Does not interact with game files 🎮
 - Activate/Deactivate via context menu ⛔
+- Double-click the tray icon to disable it 👆👆
+- Built‑in and custom keyboard layout profiles 🗂️
 - Sticky Keys Feature: tracks the state of a pressed key ⌨️
 - Enhances the precision of counter-strafing movements in games 🎯
 - Allows key rebinding using ASCII codes specified in the configuration file 🛠️
@@ -41,8 +43,6 @@ Download
 
 **SnapKey in Action**
 --------------------------------------------------------------------------------------------------
-![Explain](https://github.com/user-attachments/assets/7d11c221-33d8-43ea-839b-bfe276332593)
-
 - When you press and hold down the **"A"** key, SnapKey remembers it.
 - If you then press the **"D"** key while still holding down **"A"** SnapKey automatically releases the **"A"** key for you.
 - The same happens if you press **"A"** while holding **"D"** — SnapKey releases the **"D"** key.
@@ -58,7 +58,10 @@ Download
 hold down the **"A"** key and tap the **"D"** key repeatedly, each press of **"D"** will temporarily override 
 the **"A"** key. When you release the **"D"** key, the action associated with the **"A"** key will resume, as 
 long as you're still holding it down. The same principle applies if you start with **"D"** held down and 
-press **"A"** instead. 
+press **"A"** instead.
+
+> [!NOTE]
+> SnapKey and similar solutions have been disallowed in certain games; illustrations shown are for demonstrative purposes only.
 
 ![Snapkey](https://github.com/user-attachments/assets/504ffa5e-50d3-4a77-9016-70f22d143cb1)
 
@@ -67,53 +70,6 @@ press **"A"** instead.
 - Automatically releases a previously held key when a new key (A/D) & (W/S) is pressed.
 
 <img src="https://github.com/user-attachments/assets/4453aba4-b9bc-45e8-8a80-80caad39347b" width="600" height="338" alt="STRAFE">
-
-**Quick Guide to Using SnapKey**
---------------------------------------------------------------------------------------------------
-![use](https://github.com/user-attachments/assets/4d9fdf11-ec72-459c-995e-364bf1fc8d66)
-
-
-
-1. Get SnapKey:
-   - [Download](https://github.com/cafali/SnapKey/releases), Unzip and Launch SnapKey.exe
-
-<img width="417" alt="image" src="https://github.com/user-attachments/assets/e4606577-6edb-4c12-ad6e-9e5ee01ba18f">
-
-
-
-
-2. System Tray:
-   - SnapKey will appear in your system tray
-
-![tray](https://github.com/user-attachments/assets/26c08735-76f2-4bc0-aa75-44c9a866b453)
-
-
-
-3. You're All Set:
-   - SnapKey is now running and is ready to use
-  
-   
-4. Rebind Keys (Optional):
-   - [Rebind your keys](https://github.com/cafali/SnapKey/wiki/Rebinding-Keys) if you're using a nonstandard keyboard layout or if you want to map different keys
-
-Disable SnapKey
---------------------------------------------------------------------------------------------------
-- Right-click the SnapKey icon in the system tray and select "Disable SnapKey". This option disables the entire SnapKey functionality of the keys that are set in the config file while keeping the SnapKey process and the software running in the tray.
-
-![image](https://github.com/user-attachments/assets/4f9d8d30-4674-4361-bc87-84ee70ce4116)
-
-
-
-
-Exit SnapKey
---------------------------------------------------------------------------------------------------
-   - Right-click the SnapKey icon in the system tray and select "Exit SnapKey"
-
-![image](https://github.com/user-attachments/assets/c3a9534e-ed8b-4258-be56-37b6117c1814)
-
-
-
-
 
 **Linux Support**
 --------------------------------------------------------------------------------------------------
@@ -126,37 +82,37 @@ Looking for More Information? Got Questions or Need Help?
 [<img src="https://github.com/user-attachments/assets/0c6d7564-6471-49f2-9367-64f7bffb7e37" alt="Wikitest" width="50%" />](https://github.com/cafali/SnapKey/wiki)
 
 - **[About ℹ️](https://github.com/cafali/SnapKey/wiki/About)**  
-  Learn about Snapkey, its features, and what it can do for you.
+  Discover SnapKey, explore its features and see how it can benefit you
 
 - **[Code Breakdown 🧠](https://github.com/cafali/SnapKey/wiki/Code-Breakdown)**  
-  Dive into the details of SnapKey’s code structure.
+  Dive into the details of SnapKey’s code structure
 
 - **[Compatibility List 🎮](https://github.com/cafali/SnapKey/wiki/Compatibility-List)**  
-  Games that work with SnapKey and those that don't.
+  Compatibility status of games with SnapKey
 
 - **[FAQ❓](https://github.com/cafali/SnapKey/wiki/FAQ)**  
-  Find answers to common questions about Snapkey.
+  Find answers to common questions about SnapKey
 
 - **[License 📜](https://github.com/cafali/SnapKey/wiki/License)**  
-  Overview of Snapkey’s licensing.
+  Overview of SnapKey’s licensing
 
 - **[Rebinding Keys ⌨️](https://github.com/cafali/SnapKey/wiki/Rebinding-Keys)**  
-  Instructions on how to rebind keys.
+  Instructions on how to rebind keys
 
 - **[Setup 🛠️](https://github.com/cafali/SnapKey/wiki/Setup)**  
-  General setup instructions for getting Snapkey up and running on your system.
+  General setup instructions for getting Snapkey up and running on your system
 
 - **[Setup Linux 🐧](https://github.com/cafali/SnapKey/wiki/Setup-Linux)**  
-  Setting up Snapkey on Linux distributions.
+  Setting up SnapKey on Linux distributions
 
 - **[System Requirements 🖥️](https://github.com/cafali/SnapKey/wiki/System-Requirements)**  
-  SnapKey System Requirments.
+  SnapKey System Requirements
 
 - **[Troubleshoot 🔧](https://github.com/cafali/SnapKey/wiki/Troubleshoot)**  
-  Solutions and tips for troubleshooting common issues with Snapkey.
+  Solutions and tips for troubleshooting common issues with SnapKey
 
-- **[Updates 🔄](https://github.com/cafali/SnapKey/wiki/Updates)**  
-  SnapKey Version Updates.
+- **[Changelog 🔄](https://github.com/cafali/SnapKey/wiki/Updates)**  
+  View SnapKey releases and changes
 ----
 
 <p align="center">
@@ -174,6 +130,3 @@ Looking for More Information? Got Questions or Need Help?
     <img src="https://contrib.rocks/image?repo=cafali/Snapkey" />
   </a>
 </p>
-
-
-
