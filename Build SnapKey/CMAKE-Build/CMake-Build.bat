@@ -5,7 +5,7 @@ cd build > nul
 echo [+] Preparing files...
 cmake .. > nul
 echo [+] Compiling...
-cmake --build . > nul
+cmake --build . 
 cd .. > nul
 move "build\Debug\SnapKey.exe" "." > nul
 echo [+] Done!

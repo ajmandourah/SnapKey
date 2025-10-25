@@ -53,10 +53,10 @@ bool isLocked = false;
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void InitNotifyIconData(HWND hwnd);
-bool LoadConfig(const std::string& filename);
-void CreateDefaultConfig(const std::string& filename);
-void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename);
-std::string GetVersionInfo();
+bool LoadConfig(const std::wstring& filename);
+void CreateDefaultConfig(const std::wstring& filename);
+void RestoreConfigFromBackup(const std::wstring& backupFilename, const std::wstring& destinationFilename);
+std::wstring GetVersionInfo();
 void SendKey(int target, bool keyDown);
 
 // select layout via context menu v 1.2.9
@@ -85,8 +85,8 @@ void ApplyLayout(const string& layoutName) {
     ofstream dst(destPath, ios::binary | ios::trunc);
 
     if (!src.is_open() || !dst.is_open()) {
-        MessageBox(NULL, TEXT("Failed to apply layout. Please check the layout file."),
-                   TEXT("SnapKey Error"), MB_ICONERROR | MB_OK);
+        MessageBox(NULL, L"Failed to apply layout. Please check the layout file.",
+                   L"SnapKey Error", MB_ICONERROR | MB_OK);
         return;
     }
 
@@ -103,13 +103,13 @@ void RestartSnapKey() {
 
 // Main entry
 int main() {
-    if (!LoadConfig("config.cfg")) {
+    if (!LoadConfig(L"config.cfg")) {
         return 1;
     }
 
     hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
-        MessageBox(NULL, TEXT("SnapKey is already running!"), TEXT("SnapKey"), MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, L"SnapKey is already running!", L"SnapKey", MB_ICONINFORMATION | MB_OK);
         return 1;
     }
 
@@ -120,7 +120,7 @@ int main() {
     wc.lpszClassName = TEXT("SnapKeyClass");
 
     if (!RegisterClassEx(&wc)) {
-        MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, L"Window Registration Failed!", L"Error", MB_ICONEXCLAMATION | MB_OK);
         ReleaseMutex(hMutex);
         CloseHandle(hMutex);
         return 1;
@@ -131,7 +131,7 @@ int main() {
                                NULL, NULL, wc.hInstance, NULL);
 
     if (hwnd == NULL) {
-        MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, L"Window Creation Failed!", L"Error", MB_ICONEXCLAMATION | MB_OK);
         ReleaseMutex(hMutex);
         CloseHandle(hMutex);
         return 1;
@@ -141,7 +141,7 @@ int main() {
 
     hHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, NULL, 0);
     if (hHook == NULL) {
-        MessageBox(NULL, TEXT("Failed to install hook!"), TEXT("Error"), MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, L"Failed to install hook!", L"Error", MB_ICONEXCLAMATION | MB_OK);
         ReleaseMutex(hMutex);
         CloseHandle(hMutex);
         return 1;
@@ -210,7 +210,7 @@ void SendKey(int targetKey, bool keyDown) {
     DWORD flags = KEYEVENTF_SCANCODE;
     input.ki.dwFlags = keyDown ? flags : flags | KEYEVENTF_KEYUP;
     int randNum = rand()%(7-1 + 1) + 1;
-    std::this_thread::sleep_for(std::chrono::milliseconds(randNum))
+    std::this_thread::sleep_for(std::chrono::milliseconds(randNum));
     SendInput(1, &input, sizeof(INPUT));
 }
 
@@ -251,7 +251,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             SetForegroundWindow(hwnd);
 
             HMENU hMenu = CreatePopupMenu();
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_REBIND_KEYS, TEXT("Rebind Keys"));
+            // AppendMenu(hMenu, MF_STRING, ID_TRAY_REBIND_KEYS, TEXT("Rebind Keys"));
 
             // submenu layouts
             HMENU hSubMenu = CreatePopupMenu();
@@ -265,7 +265,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             } else {
                 AppendMenu(hSubMenu, MF_GRAYED, 0, TEXT("No layouts found"));
             }
-            AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hSubMenu, TEXT("Select Profile"));
+            AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hSubMenu, L"اختيار البروفال");
 
             AppendMenu(hMenu, MF_STRING, ID_TRAY_RESTART_SNAPKEY, TEXT("Restart SnapKey"));
             AppendMenu(hMenu, MF_STRING, ID_TRAY_LOCK_FUNCTION, isLocked ? TEXT("Enable SnapKey") : TEXT("Disable SnapKey"));
@@ -307,20 +307,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 PostQuitMessage(0);
                 break;
             case ID_TRAY_VERSION_INFO:
-                MessageBox(hwnd, GetVersionInfo().c_str(), TEXT("SnapKey Version Info"), MB_OK);
+                MessageBox(hwnd, GetVersionInfo().c_str(), L"SnapKey Version Info", MB_OK);
                 break;
             case ID_TRAY_REBIND_KEYS:
-                ShellExecute(NULL, TEXT("open"), TEXT("config.cfg"), NULL, NULL, SW_SHOWNORMAL);
+                ShellExecute(NULL, L"open", L"config.cfg", NULL, NULL, SW_SHOWNORMAL);
                 break;
             case ID_TRAY_HELP:
-                ShellExecute(NULL, TEXT("open"), TEXT("README.pdf"), NULL, NULL, SW_SHOWNORMAL);
+                ShellExecute(NULL, L"open", L"README.pdf", NULL, NULL, SW_SHOWNORMAL);
                 break;
             case ID_TRAY_CHECKUPDATE:
                 if (MessageBox(NULL,
-                               TEXT("You are about to visit the SnapKey GitHub page. Continue?"),
-                               TEXT("Update SnapKey"),
+                               L"You are about to visit the SnapKey GitHub page. Continue?",
+                               L"Update SnapKey",
                                MB_YESNO | MB_ICONQUESTION) == IDYES) {
-                    ShellExecute(NULL, TEXT("open"), TEXT("https://github.com/cafali/SnapKey/releases"), NULL, NULL, SW_SHOWNORMAL);
+                    ShellExecute(NULL, L"open", L"https://github.com/cafali/SnapKey/releases", NULL, NULL, SW_SHOWNORMAL);
                 }
                 break;
             case ID_TRAY_RESTART_SNAPKEY:
@@ -353,29 +353,29 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     return 0;
 }
 
-std::string GetVersionInfo() {
-    return "SnapKey v1.2.9 (R18)\n"
-           "Version Date: August 8, 2025\n"
-           "Repository: github.com/cafali/SnapKey\n"
-           "License: MIT License\n";
+std::wstring GetVersionInfo() {
+    return L"SnapKey v1.2.9 (R18)\n"
+           L"Version Date: August 8, 2025\n"
+           L"Repository: github.com/cafali/SnapKey\n"
+           L"License: MIT License\n";
 }
 
-void RestoreConfigFromBackup(const std::string& backupFilename, const std::string& destinationFilename) {
-    std::string sourcePath = "meta\\" + backupFilename;
-    std::string destinationPath = destinationFilename;
+void RestoreConfigFromBackup(const std::wstring& backupFilename, const std::wstring& destinationFilename) {
+    std::wstring sourcePath = L"meta\\" + backupFilename;
+    std::wstring destinationPath = destinationFilename;
 
     if (CopyFile(sourcePath.c_str(), destinationPath.c_str(), FALSE)) {
-        MessageBox(NULL, TEXT("Default config restored from backup successfully."), TEXT("SnapKey"), MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, L"Default config restored from backup successfully.", L"SnapKey", MB_ICONINFORMATION | MB_OK);
     } else {
-        MessageBox(NULL, TEXT("Failed to restore config from backup."), TEXT("SnapKey Error"), MB_ICONERROR | MB_OK);
+        MessageBox(NULL, L"Failed to restore config from backup.", L"SnapKey Error", MB_ICONERROR | MB_OK);
     }
 }
 
-void CreateDefaultConfig(const std::string& filename) {
-    RestoreConfigFromBackup("backup.snapkey", filename);
+void CreateDefaultConfig(const std::wstring& filename) {
+    RestoreConfigFromBackup(L"backup.snapkey", filename);
 }
 
-bool LoadConfig(const std::string& filename) {
+bool LoadConfig(const std::wstring& filename) {
     std::ifstream configFile(filename);
     if (!configFile.is_open()) {
         CreateDefaultConfig(filename);
@@ -398,8 +398,8 @@ bool LoadConfig(const std::string& filename) {
                     KeyInfo[value].group = id;
                 } else {
                     MessageBox(NULL,
-                               TEXT("The config file contains duplicate keys. Please review the setup."),
-                               TEXT("SnapKey Error"), MB_ICONEXCLAMATION | MB_OK);
+                               L"The config file contains duplicate keys. Please review the setup.",
+                               L"SnapKey Error", MB_ICONEXCLAMATION | MB_OK);
                     return false;
                 }
             }
