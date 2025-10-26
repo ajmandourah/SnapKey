@@ -109,7 +109,7 @@ int main() {
 
     hMutex = CreateMutex(NULL, TRUE, TEXT("SnapKeyMutex"));
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
-        MessageBox(NULL, L"SnapKey is already running!", L"SnapKey", MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, L"ثوك تاب يعمل بالخلفية", L"Thock Tap", MB_ICONINFORMATION | MB_OK);
         return 1;
     }
 
@@ -126,7 +126,7 @@ int main() {
         return 1;
     }
 
-    HWND hwnd = CreateWindowEx(0, wc.lpszClassName, TEXT("SnapKey"), WS_OVERLAPPEDWINDOW,
+    HWND hwnd = CreateWindowEx(0, wc.lpszClassName, TEXT("Thock Tap"), WS_OVERLAPPEDWINDOW,
                                CW_USEDEFAULT, CW_USEDEFAULT, 240, 120,
                                NULL, NULL, wc.hInstance, NULL);
 
@@ -238,7 +238,7 @@ void InitNotifyIconData(HWND hwnd) {
 
     HICON hIcon = (HICON)LoadImage(NULL, TEXT("icon.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
     nid.hIcon = hIcon ? hIcon : LoadIcon(NULL, IDI_APPLICATION);
-    lstrcpy(nid.szTip, TEXT("SnapKey"));
+    lstrcpy(nid.szTip, L"ثوك تاب");
     Shell_NotifyIcon(NIM_ADD, &nid);
 }
 
@@ -267,14 +267,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             }
             AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hSubMenu, L"اختيار البروفال");
 
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_RESTART_SNAPKEY, TEXT("Restart SnapKey"));
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_LOCK_FUNCTION, isLocked ? TEXT("Enable SnapKey") : TEXT("Disable SnapKey"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_RESTART_SNAPKEY, L"اعادة تشغيل ثوك تاب");
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_LOCK_FUNCTION, isLocked ? L"تفعيل ثوك تاب" : L"تعطيل ثوك تاب");
+            // AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+            // AppendMenu(hMenu, MF_STRING, ID_TRAY_HELP, L"المساعدة");
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_CHECKUPDATE, L"متجر ثوك");
+            // AppendMenu(hMenu, MF_STRING, ID_TRAY_VERSION_INFO, L"Version Info (1.2.9)");
             AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_HELP, TEXT("Get Help"));
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_CHECKUPDATE, TEXT("Check Updates"));
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_VERSION_INFO, TEXT("Version Info (1.2.9)"));
-            AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-            AppendMenu(hMenu, MF_STRING, ID_TRAY_EXIT_CONTEXT_MENU_ITEM, TEXT("Exit SnapKey"));
+            AppendMenu(hMenu, MF_STRING, ID_TRAY_EXIT_CONTEXT_MENU_ITEM, L"خروج");
 
             TrackPopupMenu(hMenu, TPM_BOTTOMALIGN | TPM_LEFTALIGN, curPoint.x, curPoint.y, 0, hwnd, NULL);
             DestroyMenu(hMenu);
@@ -317,10 +317,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 break;
             case ID_TRAY_CHECKUPDATE:
                 if (MessageBox(NULL,
-                               L"You are about to visit the SnapKey GitHub page. Continue?",
-                               L"Update SnapKey",
+                               L"المتجر ثوك متخصص في صناعة و بيع افخم الكبيوردات. المتابعة للمتجر؟",
+                               L"Thock",
                                MB_YESNO | MB_ICONQUESTION) == IDYES) {
-                    ShellExecute(NULL, L"open", L"https://github.com/cafali/SnapKey/releases", NULL, NULL, SW_SHOWNORMAL);
+                    ShellExecute(NULL, L"open", L"https://thock.sa", NULL, NULL, SW_SHOWNORMAL);
                 }
                 break;
             case ID_TRAY_RESTART_SNAPKEY:
@@ -365,9 +365,9 @@ void RestoreConfigFromBackup(const std::wstring& backupFilename, const std::wstr
     std::wstring destinationPath = destinationFilename;
 
     if (CopyFile(sourcePath.c_str(), destinationPath.c_str(), FALSE)) {
-        MessageBox(NULL, L"Default config restored from backup successfully.", L"SnapKey", MB_ICONINFORMATION | MB_OK);
+        MessageBox(NULL, L"Default config restored from backup successfully.", L"Thock tap", MB_ICONINFORMATION | MB_OK);
     } else {
-        MessageBox(NULL, L"Failed to restore config from backup.", L"SnapKey Error", MB_ICONERROR | MB_OK);
+        MessageBox(NULL, L"Failed to restore config from backup.", L"Thock tap Error", MB_ICONERROR | MB_OK);
     }
 }
 
@@ -399,7 +399,7 @@ bool LoadConfig(const std::wstring& filename) {
                 } else {
                     MessageBox(NULL,
                                L"The config file contains duplicate keys. Please review the setup.",
-                               L"SnapKey Error", MB_ICONEXCLAMATION | MB_OK);
+                               L"Thock tap Error", MB_ICONEXCLAMATION | MB_OK);
                     return false;
                 }
             }

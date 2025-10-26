@@ -7,7 +7,7 @@ cmake .. > nul
 echo [+] Compiling...
 cmake --build . 
 cd .. > nul
-move "build\Debug\SnapKey.exe" "." > nul
+move "build\Debug\ThockTap.exe" "." > nul
 echo [+] Done!
 rmdir /s /q build > nul
 echo [+] Press a key to exit...
