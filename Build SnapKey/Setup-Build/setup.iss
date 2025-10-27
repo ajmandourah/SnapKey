@@ -1,10 +1,9 @@
-#define MyAppName "SnapKey"
-#define MyAppVersion "1.2.9"
-#define MyAppPublisher "cafali"
-#define MyAppURL "https://github.com/cafali/SnapKey"
-#define MyAppExeName "SnapKey.exe"
-#define User "cafali"
-#define Folder "SnapKeyDEV"
+#define MyAppName "Thocktap"
+#define MyAppVersion "1.0.0"
+#define MyAppPublisher "Thock"
+#define MyAppURL "https://thock.sa"
+#define MyAppExeName "Thocktap.exe"
+#define Folder "Thocktap"
 
 [Setup]
 AppId={{72AF690F-C35B-4E3F-B82B-8F75A06B960E}
@@ -18,18 +17,18 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={localappdata}\{#MyAppName}
 DisableDirPage=yes
 UninstallDisplayIcon={app}\{#MyAppExeName}
-UninstallDisplayName=SnapKey
+UninstallDisplayName=Thocktap
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 DisableProgramGroupPage=yes
-LicenseFile=C:\Users\{#User}\AppData\Local\{#Folder}\LICENSE
-OutputDir=C:\Users\{#User}\Desktop
+LicenseFile=..\..\LICENSE
+OutputDir=C:\
 OutputBaseFilename={#MyAppName}-{#MyAppVersion}-Setup
-SetupIconFile=Z:\dev\DEV SnapKey\snapkey.ico
+SetupIconFile=..\..\thock.ico
 SolidCompression=yes
 WizardStyle=classic
-WizardImageFile=Z:\dev\DEV SnapKey\wizard_large.bmp
-WizardSmallImageFile=Z:\dev\DEV SnapKey\wizard_small.bmp
+WizardImageFile=.\wizard_large.bmp
+WizardSmallImageFile=.\wizard_small.bmp
 VersionInfoVersion={#MyAppVersion}
 
 
@@ -40,14 +39,13 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion  
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\config.cfg"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\icon_off.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\README.pdf"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\SnapKey.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\{#user}\AppData\Local\{#Folder}\meta\*"; DestDir: "{app}\meta"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\..\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion  
+Source: "..\..\config.cfg"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\icon_off.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\Thocktap.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\meta\*"; DestDir: "{app}\meta"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

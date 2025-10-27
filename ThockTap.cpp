@@ -317,7 +317,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 break;
             case ID_TRAY_CHECKUPDATE:
                 if (MessageBox(NULL,
-                               L"المتجر ثوك متخصص في صناعة و بيع افخم الكبيوردات. المتابعة للمتجر؟",
+                               L"متجر ثوك متخصص في صناعة و بيع افخم الكبيوردات. المتابعة للمتجر؟",
                                L"Thock",
                                MB_YESNO | MB_ICONQUESTION) == IDYES) {
                     ShellExecute(NULL, L"open", L"https://thock.sa", NULL, NULL, SW_SHOWNORMAL);
@@ -372,7 +372,7 @@ void RestoreConfigFromBackup(const std::wstring& backupFilename, const std::wstr
 }
 
 void CreateDefaultConfig(const std::wstring& filename) {
-    RestoreConfigFromBackup(L"backup.snapkey", filename);
+    RestoreConfigFromBackup(L"backup.thocktap", filename);
 }
 
 bool LoadConfig(const std::wstring& filename) {
